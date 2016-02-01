@@ -6,7 +6,7 @@
 */
 
 // Ben: It's better experience to build games in portrait modes, for now
-var portraitMode=false;
+var portraitMode=true;
 
 // FIXED MOBILE DIMENSIONS
 var mobilePortraitWidth = 480;
@@ -18,7 +18,7 @@ var mobileLandscapeHeight = 480;
 var mobileWidth=portraitMode?mobilePortraitWidth:mobileLandscapeWidth;
 var mobileHeight=portraitMode?mobilePortraitHeight:mobileLandscapeHeight;
 
-var desktopWidth=640,desktopHeight=480;
+var desktopWidth=480,desktopHeight=640;
 var w,h,multiplier,destW,destH;
 
 // A KEY-VALUE PAIR
