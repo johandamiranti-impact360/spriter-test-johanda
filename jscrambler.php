@@ -15,7 +15,7 @@ class Jscrambler {
             $this->api_host = $api_host;
         if ($api_port !== null)
             $this->api_port = $api_port;
-        $this->api_version = 2;
+        $this->api_version = 3;
     }
 
     public function get($resource_path, $params = array()) {
