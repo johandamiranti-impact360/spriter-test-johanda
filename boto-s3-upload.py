@@ -13,11 +13,10 @@ from datetime import datetime
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 
-""" OWN SERVER """
-#conn = S3Connection('AKIAJT4I3IAFP7WEPBMQ', 'NhrbnwHsMUKMnfuKYqgEakf6PTOaoN+oWrhjU9UX')
-conn = S3Connection('AKIAJ2PO6DBGS5D7LPLQ', 'rVwJOlK+E9TnKgJeS4rC2zgvoWeNK/JLtcPV0xQP')
-#BUCKET_NAME = 'marketjs-lab'
-BUCKET_NAME = 'marketjs-lab2'
+# To access, goto http://s3-ap-southeast-1.amazonaws.com/marketjs-lab3/en/game_folder/index.html
+conn = S3Connection('AKIAI5MNR6T6D6QAMUHQ', 'M2JhajpRNqoJgMHwYnYTE+It5NnD5HKrkWYboIUx',host="s3-ap-southeast-1.amazonaws.com") # Jakarta
+BUCKET_NAME = 'marketjs-lab3'
+
 GAME_NAME = os.path.split(os.getcwd())[-1] # same as folder name
 LANGUAGE_CODE = None
 
