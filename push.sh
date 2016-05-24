@@ -133,10 +133,8 @@ prep_production (){
 	java -jar compiler.jar \
 	--warning_level=QUIET \
 	--js=glue/jquery/jquery-1.8.2.min.js \
-	--js=glue/orientation/handler.js \
 	--js=glue/ie/ie.js \
 	--js=glue/jukebox/Player.js \
-	--js=glue/jukebox/Manager.js \
 	--js=glue/howler/howler.js \
 	--js=game.min.js \
 	--js_output_file=_factory/game/game.js \

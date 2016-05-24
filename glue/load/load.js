@@ -39,15 +39,14 @@ loadScriptsSynchronously([
 
 	// Jukebox
 	'glue/jukebox/Player.js',
-	'glue/jukebox/Manager.js',
 
 	// ORIENTATION
-	'glue/orientation/handler.js',
 
 	//Howler
 	'glue/howler/howler.js',
 	
 	// Game
 	'lib/impact/impact.js',
-	'lib/game/main.js',
+	'lib/game/main.js'
+    
 ]);
