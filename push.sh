@@ -152,7 +152,7 @@ deploy (){
 	echo "Deploying ..."
 	echo ""
 
-	python2.7 boto-s3-upload.py -l $2 $1
+	python boto-s3-upload.py -l $2 $1
 	
 	echo ""
 	echo "Deploying Done!"

@@ -13,10 +13,10 @@ from datetime import datetime
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 
+""" OWN SERVER """
 # To access, goto http://s3-ap-southeast-1.amazonaws.com/marketjs-lab3/en/game_folder/index.html
 conn = S3Connection('AKIAI5MNR6T6D6QAMUHQ', 'M2JhajpRNqoJgMHwYnYTE+It5NnD5HKrkWYboIUx',host="s3-ap-southeast-1.amazonaws.com") # Jakarta
 BUCKET_NAME = 'marketjs-lab3'
-
 GAME_NAME = os.path.split(os.getcwd())[-1] # same as folder name
 LANGUAGE_CODE = None
 
@@ -64,7 +64,7 @@ def uploadResultToS3(bucket,game_folder_name,srcDir):
 	k = Key(b)
 	
 	""" PATTERN MATCHING """	
-	file_pattern = re.compile(r'.*\.(md$|zip$|aif$|tiff$|au$|psd$|xcf$|sh$|py$|php$|bat$|git$|txt$|jar$|DS_Store)')
+	file_pattern = re.compile(r'.*\.(md$|aif$|tiff$|au$|psd$|xcf$|sh$|py$|php$|bat$|git$|txt$|jar$|DS_Store)')
 	folder_pattern = re.compile(r'.*(/glue/|/lib/|/tools/|git)')
 
 	""" UPLOAD SETTINGS """
@@ -99,6 +99,7 @@ def uploadResultToS3(bucket,game_folder_name,srcDir):
 def upload(k,b,game_folder_name,path,file,srcDir,language_code):		
 	print 'Preparing bucket for upload'	
 	k.key = language_code + '/' + game_folder_name + "/" + os.path.relpath(os.path.join(path,file),srcDir)
+	k.key = re.sub(r'\\', '/', k.key) #added to avoid forward slash in k.key
 	print 'sending ' + file + ' to ' + b.name + '/' + k.key + ' ...'
 	
 	k.set_contents_from_filename(os.path.join(path,file))
