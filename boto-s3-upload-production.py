@@ -65,6 +65,7 @@ def uploadResultToS3(bucket,game_folder_name,srcDir):
 	""" PATTERN MATCHING """	
 	file_pattern = re.compile(r'.*\.(md$|aif$|tiff$|au$|psd$|xcf$|sh$|py$|php$|bat$|git$|txt$|jar$|DS_Store)')
 	folder_pattern = re.compile(r'.*(/glue/|/lib/|/tools/|git)')
+	folder_pattern_windows = re.compile(r'.*(\\glue\\|\\lib\\|\\tools\\|git)')
 
 	""" UPLOAD SETTINGS """
 	day_freshness = 1
@@ -82,7 +83,7 @@ def uploadResultToS3(bucket,game_folder_name,srcDir):
 	for path,dir,files in os.walk(srcDir):
 		for file in files:			
 			""" filter out unwanted file extensions (eg: xcf,sh,py)"""
-			if not re.match(file_pattern,file) and not re.match(folder_pattern,path):
+			if not re.match(file_pattern,file) and not re.match(folder_pattern,path) and not re.match(folder_pattern_windows,path):
 
 				""" get freshness """
 				last_modified_time_epoch_seconds = os.path.getmtime(os.path.join(path,file))
