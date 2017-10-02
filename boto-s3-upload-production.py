@@ -19,6 +19,9 @@ BUCKET_NAME = 'marketjs-factory'
 GAME_NAME = os.path.split(os.getcwd())[-1] # same as folder name
 LANGUAGE_CODE = None
 
+BUCKET = conn.get_bucket(BUCKET_NAME)
+BUCKET_LOCATION = BUCKET.get_location()
+
 def usage():
 	print 'Options and arguments:'
 	print '-a --all	:  [uploads everything in folder]'
@@ -100,7 +103,7 @@ def upload(k,b,game_folder_name,path,file,srcDir,language_code):
 	print 'Preparing bucket for upload'
 	k.key = language_code + '/' + game_folder_name + "/" + os.path.relpath(os.path.join(path,file),srcDir)
 	k.key = re.sub(r'\\', '/', k.key) #added to avoid forward slash in k.key 
-	print 'sending ' + file + ' to ' + b.name + '/' + k.key + ' ...'
+	print 'sending ' + file + ' to https://s3-' + BUCKET_LOCATION + '.amazonaws.com/'  + b.name + '/' + k.key + ' ...'
 	k.set_contents_from_filename(os.path.join(path,file))
 
 	if path.find('_factory') >=0:
