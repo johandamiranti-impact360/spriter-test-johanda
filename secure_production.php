@@ -30,16 +30,24 @@ $jscrambler = new Jscrambler($access_key, $secret_key, 'api.jscrambler.com', 80)
 
 $params = array('files'    => $path_to_project,
 				'domain_lock' => 'cdn-factory.marketjs.com',
-				'mode' => 'mobile', // protects your HTML5 and Web Gaming applications by targeting the new HTML5 features
+				'mode' => 'mobile', 
+				'domain_lock_warning_function' => 'window.dba.dlwf',
+				'rename_local' => '%DEFAULT%',
+                'function_outlining' => '%DEFAULT%',
+                'function_reorder' => '%DEFAULT%',
+                'member_enumeration' => '%DEFAULT%',
+                'literal_hooking' => '%DEFAULT%',
+                'duplicate_literals' => '%DEFAULT%',
+                //'self_defending' => '%DEFAULT%',
 				);
 
 // POST
 $result = $jscrambler->post('/code.json', $params);
 
-print_r($result);
-
 // Decode
-$result = json_decode($result['transfer']);
+$result = json_decode($result);
+
+print_r($result);
 
 // Project and file details
 $project_id = $result->{'id'};
@@ -57,13 +65,23 @@ check_status:
 	$status = $jscrambler->get("/code/{$project_id}/{$file_id}.json");
 
 	// Decode
-	$status = json_decode($status['transfer']);
+	$status = json_decode($status);
+    
+    print_r($status);
 
 	if($status->{'finished_at'}==null){
 		echo 'Not ready ... '."\n";
 		goto check_status;
 	}else{
-		echo 'Finished ... downloading file ...'."\n";
+        if($status->{'error_id'}==0){
+            echo 'Finished ... downloading file ...'."\n";
+        }
+		else {
+		    echo 'Error ... aborting ...'."\n";
+            echo 'Error ID: '.$status->{'error_id'}."\n";
+            echo 'Error Message: '.$status->{'error_message'}."\n";
+            exit();
+		}
 	}
 
 // Get the js file, rename to game.min.js

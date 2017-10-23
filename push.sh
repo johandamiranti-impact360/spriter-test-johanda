@@ -25,38 +25,121 @@ bake (){
     echo ""
 }
 
-secure (){
+secure_regular (){    
+    # 1st layer of main obfuscation
     echo ""
     echo "Preparing domainlock ..."
     echo ""
     rm domainlock.js
-    python prep_domainlock.py
+    python prep_domainlock.py 'lib/game/main.js' 'domainlock.js' 'this.START_OBFUSCATION;' 'this.END_OBFUSCATION;'
 
+    # domainlock breakout attempt info
+    echo ""
+    echo "Injecting Domainlock Breakout Attempt info"
+    echo ""
+    python inject_domainlock_breakout_info.py 'domainlock.js'
+    
+    # suppress console functions, freeze console and context2D
+    echo ""
+    echo "Injecting Anti-Tampering protection code"
+    echo ""
+    python inject_protection.py 'domainlock.js'
+    
     echo ""
     echo "Preparing factory domainlock ..."
     echo ""
     prep_factory_domainlock
 
     echo ""
-    echo "Injecting framebreaker into domainlock.js ..."
-    echo ""
-    python inject_framebreaker.py
-
-    echo ""
     echo "Securing by obscuring ..."
     echo ""
-    php secure_dev.php domainlock.js
+    php secure_dev.php 'domainlock.js'
 
     echo ""
     echo "Injecting domainlock ..."
     echo ""
-    python inject_domainlock.py
+    python inject_domainlock.py 'domainlock.js' 'game.js' 'this.START_OBFUSCATION;' 'this.END_OBFUSCATION'
+
+    echo ""
+    echo "Cleaning up domainlock ..."
+    echo ""
+    rm domainlock.js
+
+    # 2nd layer of global obfuscation
+    echo ""
+    echo "Securing by obscuring ..."
+    echo ""
+    php secure_dev.php 'game.js'
 
     echo ""
     echo "Securing Done!"
     echo ""
 
+}
+
+secure_strong (){    
+    # 1st layer of main obfuscation
+    echo ""
+    echo "Preparing domainlock ..."
+    echo ""
     rm domainlock.js
+    python prep_domainlock.py 'lib/game/main.js' 'domainlock.js' 'this.START_OBFUSCATION;' 'this.END_OBFUSCATION;'
+
+    # Inject framebreaker
+    echo ""
+    echo "Injecting framebreaker ..."
+    echo ""
+    python inject_framebreaker.py 'domainlock.js'
+    echo ""
+
+    # copyright info
+    echo ""
+    echo "Injecting Copyright info"
+    echo ""
+    python inject_copyright_info.py 'domainlock.js'
+
+    # domainlock breakout attempt info
+    echo ""
+    echo "Injecting Domainlock Breakout Attempt info"
+    echo ""
+    python inject_domainlock_breakout_info.py 'domainlock.js'
+    
+    # suppress console functions, freeze console and context2D
+    echo ""
+    echo "Injecting Anti-Tampering protection code"
+    echo ""
+    python inject_protection.py 'domainlock.js'
+    
+    echo ""
+    echo "Preparing factory domainlock ..."
+    echo ""
+    prep_factory_domainlock
+
+    echo ""
+    echo "Securing by obscuring ..."
+    echo ""
+    php secure_dev.php 'domainlock.js'
+
+    echo ""
+    echo "Injecting domainlock ..."
+    echo ""
+    python inject_domainlock.py 'domainlock.js' 'game.js' 'this.START_OBFUSCATION;' 'this.END_OBFUSCATION'
+
+    echo ""
+    echo "Cleaning up domainlock ..."
+    echo ""
+    rm domainlock.js
+
+    # 2nd layer of global obfuscation
+    echo ""
+    echo "Securing by obscuring ..."
+    echo ""
+    php secure_dev.php 'game.js'
+
+    echo ""
+    echo "Securing Done!"
+    echo ""
+
 }
 
 prep_factory_domainlock(){
@@ -184,6 +267,7 @@ while getopts "l:bnahg:" opt; do
         bake
         prep_production $3
         compile_test_game
+        secure_strong
       ;;
     n)
         deploy --new $3

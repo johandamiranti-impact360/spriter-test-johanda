@@ -32,50 +32,69 @@ promo (){
     echo ""
 }
 
-secure (){
+secure_strong (){    
+    # 1st layer of main obfuscation
     echo ""
     echo "Preparing domainlock ..."
     echo ""
     rm domainlock.js
-    python prep_domainlock.py
+    python prep_domainlock.py 'lib/game/main.js' 'domainlock.js' 'this.START_OBFUSCATION;' 'this.END_OBFUSCATION;'
 
+    # Inject framebreaker
+    echo ""
+    echo "Injecting framebreaker ..."
+    echo ""
+    python inject_framebreaker.py 'domainlock.js'
+    echo ""
+
+    # copyright info
+    echo ""
+    echo "Injecting Copyright info"
+    echo ""
+    python inject_copyright_info.py 'domainlock.js'
+
+    # domainlock breakout attempt info
+    echo ""
+    echo "Injecting Domainlock Breakout Attempt info"
+    echo ""
+    python inject_domainlock_breakout_info.py 'domainlock.js'
+    
+    # suppress console functions, freeze console and context2D
+    echo ""
+    echo "Injecting Anti-Tampering protection code"
+    echo ""
+    python inject_protection.py 'domainlock.js'
+    
     echo ""
     echo "Preparing factory domainlock ..."
     echo ""
     prep_factory_domainlock
 
     echo ""
-    echo "Injecting framebreaker into domainlock.js ..."
-    echo ""
-    python inject_framebreaker.py
-
-    echo ""
-    echo "Prep MarketJS GameCenter API ..."
-    echo ""
-    prep_marketjs_gamecenter_api
-
-    echo ""
     echo "Securing by obscuring ..."
     echo ""
-    php secure_production.php domainlock.js
+    php secure_production.php 'domainlock.js'
 
     echo ""
     echo "Injecting domainlock ..."
     echo ""
-    python inject_domainlock.py
+    python inject_domainlock.py 'domainlock.js' 'game.js' 'this.START_OBFUSCATION;' 'this.END_OBFUSCATION'
+
+    echo ""
+    echo "Cleaning up domainlock ..."
+    echo ""
+    rm domainlock.js
+
+    # 2nd layer of global obfuscation
+    echo ""
+    echo "Securing by obscuring ..."
+    echo ""
+    php secure_production.php 'game.js'
 
     echo ""
     echo "Securing Done!"
     echo ""
 
-    rm domainlock.js
-}
-
-# Replaces to blank API, so server can autogen
-prep_marketjs_gamecenter_api(){
-    cp _factory/domainlock/raw.js temp.js
-    sed "s/MarketJS.Initialize.*/MarketJS.Initialize('INSERT_MARKETJS_API_KEY');/g" temp.js > _factory/domainlock/raw.js
-    rm temp.js
 }
 
 prep_factory_domainlock(){
@@ -157,10 +176,8 @@ prep_production (){
     java -jar compiler.jar \
     --warning_level=QUIET \
     --js=glue/jquery/jquery-3.2.1.min.js \
-    --js=glue/orientation/handler.js \
     --js=glue/ie/ie.js \
     --js=glue/jukebox/Player.js \
-    --js=glue/jukebox/Manager.js \
     --js=glue/howler/howler.js \
     --js=game.min.js \
     --js_output_file=_factory/game/game.js \
@@ -183,6 +200,11 @@ deploy (){
     echo ""
     echo "Deploying Done!"
     echo ""
+
+    echo ""
+    echo "Clearing cloudfront cache ..."
+    echo ""
+    python cloudfront_invalidate_cache_production.py
 }
 
 gitpush (){
@@ -210,7 +232,7 @@ while getopts "l:bnahs:" opt; do
         bake
         prep_production $3
         compile_test_game
-        secure
+        secure_strong
         promo
       ;;
     n)
