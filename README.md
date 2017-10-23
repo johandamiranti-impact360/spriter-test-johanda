@@ -14,5 +14,6 @@ IMPACTJS MARKETJS PLATFORM
 As of October 23rd 2017 anti-piracy security updates, jscrambler obfuscation is now part of the game compilation process ( '-b' task from push.sh). 
 
 In push.sh, added secure_strong and secure_regular: 
+
 - secure_regular excludes framebreaker and copyright message (for clients typically -> easier for integration)  
 - secure_strong has all the goods
