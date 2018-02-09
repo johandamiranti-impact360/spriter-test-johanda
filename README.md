@@ -7,6 +7,10 @@ IMPACTJS MARKETJS PLATFORM
 * ##### [Storage Manager Plugin](https://docs.google.com/document/d/14kzaC8yl2QbJzMFEIkIJWviY78GW0Cnz7WF9GRh9Klg/edit?usp=sharing)
 * ##### [FAQ](https://bit.ly/mjs-faq)
 
+##### Install Jscrambler CLI (v5.x)
+1. Download and Install [Node.js & npm](https://docs.npmjs.com/getting-started/installing-node)
+2. Install [jscrambler](https://www.npmjs.com/package/jscrambler) globally: `npm i -g jscrambler`
+Note that you only need to do this once. 
 
 #### Notes: 
 

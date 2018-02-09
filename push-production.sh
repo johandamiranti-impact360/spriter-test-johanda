@@ -6,8 +6,8 @@
 # -----------------------------------------------------------------------
 
 #! /bin/bash
-# Usage: sh push.sh [options]
-# Example: sh push.sh -b -d (bake, then deploy)
+# Usage: bash push.sh [options]
+# Example: bash push.sh -b -d (bake, then deploy)
 
 CURRENT_DIRECTORY=${PWD}/
 
@@ -17,7 +17,7 @@ bake (){
     echo ""
 
     cd tools
-    ./bake.sh
+    bash bake.sh
     cd ..
 
     echo ""
@@ -28,7 +28,7 @@ bake (){
 promo (){
     echo ""
     echo "Preparing promo ..."
-    sh promo.sh
+    bash promo.sh
     echo ""
 }
 
@@ -73,7 +73,7 @@ secure_strong (){
     echo ""
     echo "Securing by obscuring ..."
     echo ""
-    php secure_production.php 'domainlock.js'
+    jscrambler -c tools/jscrambler-production.json 'domainlock.js' -o 'domainlock.js'
 
     echo ""
     echo "Injecting domainlock ..."
@@ -89,7 +89,7 @@ secure_strong (){
     echo ""
     echo "Securing by obscuring ..."
     echo ""
-    php secure_production.php 'game.js'
+    jscrambler -c tools/jscrambler-production.json 'game.js' -o 'game.js'
 
     echo ""
     echo "Securing Done!"
@@ -122,8 +122,8 @@ compile_test_game (){
     echo "Done!"
 
     echo "Compiling game.css for testing ..."
-    sh css-append.sh
-    sh css-minify.sh temp.css > game.css
+    bash css-append.sh
+    bash css-minify.sh temp.css > game.css
     sed -i.bak 's/..\/..\/..\/..\/..\/..\///g' game.css
     rm temp.css
     rm *.bak
@@ -139,7 +139,7 @@ prep_production (){
     #echo '$3:' $3
     #echo '$4:' $4
 
-    sh zip-media-folder.sh $1
+    bash zip-media-folder.sh $1
     echo "Done ..."
 
     echo "Create basic index.html ..."
@@ -195,7 +195,7 @@ deploy (){
     echo "Deploying ..."
     echo ""
 
-    python2.7 boto-s3-upload-production.py -l $2 $1
+    python boto-s3-upload-production.py -l $2 $1
 
     echo ""
     echo "Deploying Done!"
@@ -217,13 +217,13 @@ gitpush (){
 while getopts "l:bnahs:" opt; do
   case $opt in
     h)
-        echo "Usage: sh push.sh [option]"
+        echo "Usage: bash push.sh [option]"
         echo "Deploy Options"
         echo "\t -b \t Build all files"
         echo "\t -l \t Select language by code (en,jp,kr,zh,de,es, etc ...)"
         echo "\t -a \t Upload all files"
         echo "\t -n \t Upload new (recent) files up to 12 hrs"
-        echo "Working example (copy paste directly): sh push-production.sh -b -l en -a"
+        echo "Working example (copy paste directly): bash push-production.sh -b -l en -a"
       ;;
     l)
         echo "language to use:" $3
