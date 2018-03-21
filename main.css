@@ -10,8 +10,8 @@ html,body {
 @font-face{
 	font-family:'LuckiestGuy';
 	src:
-			url('media/font/graphics/LuckiestGuy.woff') format('woff'),
-			url('media/font/graphics/LuckiestGuy.ttf') format('truetype'); 
+			url('media/graphics/font/LuckiestGuy.woff') format('woff'),
+			url('media/graphics/font/LuckiestGuy.ttf') format('truetype'); 
 }
 
 #game {
