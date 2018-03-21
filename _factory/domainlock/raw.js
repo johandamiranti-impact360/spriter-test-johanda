@@ -85,12 +85,14 @@
 			if(ig.ua.mobile) {
 				this.director = new ig.Director(this, [
 					LevelOpening,
-					LevelTestMobile
+					LevelMenu,
+					LevelGame
 				]);
 			} else {
 				this.director = new ig.Director(this, [
 					LevelOpening,
-					LevelTestDesktop
+					LevelMenu,
+					LevelGame
 				]);
 			}
 			// CALL LOAD LEVELS
@@ -294,7 +296,7 @@
 					if(this.debug && this.debug.length > 0) {
 						//draw debug console log
 						for(i = 0; i < this.debug.length; i++) {
-							ig.system.context.font = "10px Arial";
+							ig.system.context.font = "10px LuckiestGuy";
 							ig.system.context.fillStyle = '#ffffff';
 							ig.system.context.fillText(this.debugLine - this.debug.length + i + ": " + this.debug[i], 10, 50 + 10 * i);
 						}
