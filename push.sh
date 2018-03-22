@@ -251,14 +251,14 @@ gitpush (){
 while getopts "l:bnahg:" opt; do
   case $opt in
     h)
-        echo "Usage: bash push.sh [option]"
+        echo "Usage: sh push.sh [option]"
         echo "Deploy Options"
         echo "\t -b \t Build all files"
         echo "\t -l \t Select language by code (en,jp,kr,zh,de,es, etc ...)"
         echo "\t -a \t Upload all files"
         echo "\t -n \t Upload new (recent) files up to 12 hrs"
         echo "\t -g \t Add, commit and push to remote repo (origin)"
-        echo "Working example (copy paste directly): bash push.sh -b -l jp -a -g 'somefix'"
+        echo "Working example (copy paste directly): sh push.sh -b -l jp -a -g 'somefix'"
       ;;
     l)
         echo "language to use:" $3
@@ -267,6 +267,7 @@ while getopts "l:bnahg:" opt; do
         bake
         prep_production $3
         compile_test_game
+        # secure_regular
         secure_strong
       ;;
     n)

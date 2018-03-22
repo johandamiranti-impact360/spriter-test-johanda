@@ -1,1 +1,1 @@
-python boto-s3-upload-production.py -l en -n
+python2.7 boto-s3-upload-production.py -l en -n

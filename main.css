@@ -3,15 +3,8 @@ html,body {
 	margin: 0;
 	padding: 0;
 	position: relative;
-	font-family:"LuckiestGuy";
+	font-family:"Arial";
 	width:100%;
-}
-
-@font-face{
-	font-family:'LuckiestGuy';
-	src:
-			url('media/graphics/font/LuckiestGuy.woff') format('woff'),
-			url('media/graphics/font/LuckiestGuy.ttf') format('truetype'); 
 }
 
 #game {
@@ -128,12 +121,4 @@ html,body {
 .horizontal-seperator{
 	height:10px;
 	width:100%;
-}
-
-.preloadText {
-    position: absolute;
-    top: -1000;
-    left: -1000;
-    display: none;
-    z-index: -1;
 }

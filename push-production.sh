@@ -195,7 +195,7 @@ deploy (){
     echo "Deploying ..."
     echo ""
 
-    python boto-s3-upload-production.py -l $2 $1
+    python2.7 boto-s3-upload-production.py -l $2 $1
 
     echo ""
     echo "Deploying Done!"
@@ -217,13 +217,13 @@ gitpush (){
 while getopts "l:bnahs:" opt; do
   case $opt in
     h)
-        echo "Usage: bash push.sh [option]"
+        echo "Usage: sh push.sh [option]"
         echo "Deploy Options"
         echo "\t -b \t Build all files"
         echo "\t -l \t Select language by code (en,jp,kr,zh,de,es, etc ...)"
         echo "\t -a \t Upload all files"
         echo "\t -n \t Upload new (recent) files up to 12 hrs"
-        echo "Working example (copy paste directly): bash push-production.sh -b -l en -a"
+        echo "Working example (copy paste directly): sh push-production.sh -b -l en -a"
       ;;
     l)
         echo "language to use:" $3
