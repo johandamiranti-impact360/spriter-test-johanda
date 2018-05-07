@@ -23,7 +23,8 @@ var _STRINGS = {
 		"Loading":"Loading ...",	
 		"LogoLine1":"Some text here",
 		"LogoLine2":"powered by MarketJS",
-		"LogoLine3":"none",						
+		"LogoLine3":"none", 
+        "TapToStart":"TAP TO START", 
 	},
 
 	"Game":{
