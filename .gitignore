@@ -1,12 +1,3 @@
-### Custom ###
-.git/
-!.gitignore
-!_factory/.gitkeep
-!_factory/domainlock/.gitkeep
-!_factory/game/.gitkeep
-!_factory/index/.gitkeep
-!_factory/localization/.gitkeep
-
 # Created by https://www.gitignore.io/api/git,node,linux,macos,python,backup,windows
 
 ### Backup ###
@@ -242,3 +233,14 @@ $RECYCLE.BIN/
 
 
 # End of https://www.gitignore.io/api/git,node,linux,macos,python,backup,windows
+
+### Custom ###
+.git/
+!.gitignore
+!_factory/
+!_factory/.gitkeep
+!_factory/domainlock/.gitkeep
+!_factory/game/.gitkeep
+!_factory/index/.gitkeep
+!_factory/localization/.gitkeep
+!lib/
