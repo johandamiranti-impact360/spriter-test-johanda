@@ -21,3 +21,17 @@ In push.sh, added secure_strong and secure_regular:
 
 - secure_regular excludes framebreaker and copyright message (for clients typically -> easier for integration)  
 - secure_strong has all the goods
+
+#### Fix for SSL Error `[SSL: CERTIFICATE_VERIFY_FAILED]`
+Try installing [certifi](https://pypi.org/project/certifi/) package. 
+For Mac user, you can install by executing the command anywhere in terminal: `/Applications/Python\ {VERSION}/Install\ Certificates.command`
+
+```shell
+# For example
+# Python 2.7
+/Applications/Python\ 2.7/Install\ Certificates.command
+
+# Python 3.6
+/Applications/Python\ 3.6/Install\ Certificates.command
+
+
