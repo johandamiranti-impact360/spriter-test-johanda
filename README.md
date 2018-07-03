@@ -33,5 +33,5 @@ For Mac user, you can install by executing the command anywhere in terminal: `/A
 
 # Python 3.6
 /Applications/Python\ 3.6/Install\ Certificates.command
-
+```
 
