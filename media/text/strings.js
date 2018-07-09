@@ -26,6 +26,10 @@ var _STRINGS = {
 		"LogoLine3":"none", 
         "TapToStart":"TAP TO START", 
 	},
+	"Task":
+	{
+		"Select":"SELECT PICTURE"
+	},
 
 	"Game":{
 		"SelectPlayer":"Select Player",
