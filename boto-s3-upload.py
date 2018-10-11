@@ -68,8 +68,8 @@ def uploadResultToS3(bucket,game_folder_name,srcDir):
 	
 	""" PATTERN MATCHING """	
 	file_pattern = re.compile(r'.*\.(md$|aif$|tiff$|au$|psd$|xcf$|sh$|py$|pyc$|php$|bat$|git$|gitignore$|gitkeep$|tm_properties$|txt$|jar$|DS_Store$)')
-	folder_pattern = re.compile(r'.*(/glue/|/glue|/doc/|/doc|/config/|/config|/lib/|/lib|/tools/|/tools|/git/|/git|git)')
-	folder_pattern_windows = re.compile(r'.*(\\glue\\|\\glue|\\doc\\|\\doc|\\config\\|\\config|\\lib\\|\\lib|\\tools\\|\\tools|git)')
+	folder_pattern = re.compile(r'.*(/node_modules/|/node_modules|/glue/|/glue|/doc/|/doc|/config/|/config|/lib/|/lib|/tools/|/tools|/git/|/git|git)')
+	folder_pattern_windows = re.compile(r'.*(\\node_modules\\|\\node_modules|\\glue\\|\\glue|\\doc\\|\\doc|\\config\\|\\config|\\lib\\|\\lib|\\tools\\|\\tools|\\git\\|\\git|git)')
 
 	""" UPLOAD SETTINGS """
 	day_freshness = 1
