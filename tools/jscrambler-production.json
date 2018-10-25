@@ -58,6 +58,5 @@
     "es6": false,
     "es7": false
   },
-  "useRecommendedOrder": true,
-  "jscramblerVersion": "5.3"
+  "useRecommendedOrder": true
 }
