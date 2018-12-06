@@ -5,6 +5,7 @@ html,body {
 	position: relative;
 	font-family:"Arial";
 	width:100%;
+    touch-action: none;
 }
 
 #game {
