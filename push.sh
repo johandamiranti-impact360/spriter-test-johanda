@@ -9,8 +9,14 @@
 # Usage: bash push.sh [options]
 # Example: bash push.sh -b -d (bake, then deploy)
 
+# Configurations
+BITBUCKET_BRANCH="master"
+INCLUDE_VCONSOLE=false
+
+# Variables
 CURRENT_DIRECTORY=${PWD}/
 
+# Methods
 bake (){
     echo ""
     echo "Baking ..."
@@ -213,15 +219,30 @@ prep_production (){
     cp index.html _factory/index/custom.html
 
     echo "Compiling game.js for _factory ..."
-    java -jar compiler.jar \
-    --warning_level=QUIET \
-    --js=glue/jquery/jquery-3.2.1.min.js \
-    --js=glue/ie/ie.js \
-    --js=glue/jukebox/Player.js \
-    --js=glue/howler/howler.js \
-    --js=game.min.js \
-    --js_output_file=_factory/game/game.js \
-    --language_in=ECMASCRIPT5
+    if [ "$INCLUDE_VCONSOLE" = true ] ; 
+    then
+        java -jar compiler.jar \
+        --warning_level=QUIET \
+        --js=glue/debug/vconsole.min.js \
+        --js=glue/debug/vconsole.init.js \
+        --js=glue/jquery/jquery-3.2.1.min.js \
+        --js=glue/ie/ie.js \
+        --js=glue/jukebox/Player.js \
+        --js=glue/howler/howler.js \
+        --js=game.min.js \
+        --js_output_file=_factory/game/game.js \
+        --language_in=ECMASCRIPT5
+    else
+        java -jar compiler.jar \
+        --warning_level=QUIET \
+        --js=glue/jquery/jquery-3.2.1.min.js \
+        --js=glue/ie/ie.js \
+        --js=glue/jukebox/Player.js \
+        --js=glue/howler/howler.js \
+        --js=game.min.js \
+        --js_output_file=_factory/game/game.js \
+        --language_in=ECMASCRIPT5
+    fi
     echo "Done!"
 
     # Remove temp files
@@ -245,9 +266,10 @@ deploy (){
 gitpush (){
     git add --all
     git commit -m "$*"
-    git push origin master
+    git push origin $BITBUCKET_BRANCH
 }
 
+# Options
 while getopts "l:bnahg:" opt; do
   case $opt in
     h)
