@@ -44,7 +44,11 @@ loadScriptsSynchronously([
 
 	//Howler
 	'glue/howler/howler.js',
-	
+
+	//Font
+	'glue/font/promise.polyfill.js',
+	'glue/font/fontfaceobserver.standalone.js',
+
 	// Game
 	'lib/impact/impact.js',
 	'lib/game/main.js'
