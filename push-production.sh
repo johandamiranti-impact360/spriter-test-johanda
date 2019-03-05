@@ -179,6 +179,8 @@ prep_production (){
     --js=glue/ie/ie.js \
     --js=glue/jukebox/Player.js \
     --js=glue/howler/howler.js \
+    --js=glue/font/promise.polyfill.js \
+    --js=glue/font/fontfaceobserver.standalone.js \
     --js=game.min.js \
     --js_output_file=_factory/game/game.js \
     --language_in=ECMASCRIPT5
