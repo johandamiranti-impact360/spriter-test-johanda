@@ -6,6 +6,7 @@ html,body {
 	font-family:"Arial";
 	width:100%;
     touch-action: none;
+    overflow: hidden;
 }
 
 #game {
