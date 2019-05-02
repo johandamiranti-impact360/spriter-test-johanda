@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
  MarketJS Amazon S3 Deployment System
  -----------------------------------------------------------------------
@@ -94,10 +95,10 @@ def uploadResultToS3(bucket,game_folder_name,srcDir):
 				delta = datetime.now()-last_modified_time
 				
 				if upload_all:
-					upload(k,b,game_folder_name,path,file,srcDir,LANGUAGE_CODE)					
+					upload(k,b,game_folder_name,path,file.decode('utf8'),srcDir,LANGUAGE_CODE)					
 				else:					
 					if delta.days < day_freshness and delta.seconds < seconds_freshness:
-						upload(k,b,game_folder_name,path,file,srcDir,LANGUAGE_CODE)
+						upload(k,b,game_folder_name,path,file.decode('utf8'),srcDir,LANGUAGE_CODE)
 						
 def upload(k,b,game_folder_name,path,file,srcDir,language_code):
 	print 'Preparing bucket for upload'
