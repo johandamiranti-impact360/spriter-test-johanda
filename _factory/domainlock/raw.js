@@ -49,19 +49,8 @@
 			}
 		},
 		finalize: function() {
-			if(ig.ua.mobile) {
-				// Inject link
-				var elem = ig.domHandler.getElementById("#play");
-				ig.domHandler.attr(elem, 'onclick', 'ig.soundHandler.sfxPlayer.play("staticSound");ig.game.splashClick();');
-				ig.domHandler.show(elem);
-				// Special hack
-				// $('body').height($('#game').height()+75);
-				// sizeHandler();
-				// Special hack
-				//$('body').height($('#game').height());
-			} else {
-				this.start();
-			}
+            this.start();
+                
 			ig.sizeHandler.reorient();
 		},
 		removeLoadingWheel: function() {
@@ -141,15 +130,6 @@
 				// EG: coins,score,lives, etc
 				id: this.playerStats ? this.playerStats.id : null, // FOR FACEBOOK LOGIN IDS
 			}
-		},
-		splashClick: function() {
-			var elem = ig.domHandler.getElementById("#play")
-			ig.domHandler.hide(elem);
-			// Show ads
-			ig.apiHandler.run("MJSFooter");
-			ig.apiHandler.run("MJSHeader");
-			ig.game.start();
-			//ig.soundHandler.bgmPlayer.play(ig.soundHandler.bgmPlayer.soundList.bgm);
 		},
 		pauseGame: function() {
 			ig.system.stopRunLoop.call(ig.system);
