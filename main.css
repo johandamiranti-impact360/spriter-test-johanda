@@ -124,15 +124,3 @@ html,body {
 	height:10px;
 	width:100%;
 }
-
-/* https://css-tricks.com/snippets/css/using-font-face/ */
-/* Deepest Possible Browser Support */
-@font-face {
-	font-family: 'montserrat';
-	src: url('media/fonts/Montserrat-Regular.eot'); /* IE9 Compat Modes */
-	src: url('media/fonts/Montserrat-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-			url('media/fonts/Montserrat-Regular.woff2') format('woff2'), /* Super Modern Browsers */
-			url('media/fonts/Montserrat-Regular.woff') format('woff'), /* Pretty Modern Browsers */
-			url('media/fonts/Montserrat-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-			url('media/fonts/Montserrat-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
-}
