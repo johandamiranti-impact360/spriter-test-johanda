@@ -11,6 +11,8 @@
 
 # Configurations
 BITBUCKET_BRANCH="master"
+ENABLE_FRAMEBREAKER=true
+ENABLE_COPYRIGHT=true
 INCLUDE_VCONSOLE=false
 REMOVE_TEST_AD=true
 
@@ -92,18 +94,24 @@ secure_strong (){
     rm domainlock.js
     python prep_domainlock.py 'lib/game/main.js' 'domainlock.js' 'this.START_OBFUSCATION;' 'this.END_OBFUSCATION;'
 
-    # Inject framebreaker
-    echo ""
-    echo "Injecting framebreaker ..."
-    echo ""
-    python inject_framebreaker.py 'domainlock.js'
-    echo ""
+    if [ "$ENABLE_FRAMEBREAKER" = true ] ; 
+    then
+        # Inject framebreaker
+        echo ""
+        echo "Injecting framebreaker ..."
+        echo ""
+        python inject_framebreaker.py 'domainlock.js'
+        echo ""
+    fi
 
-    # copyright info
-    echo ""
-    echo "Injecting Copyright info"
-    echo ""
-    python inject_copyright_info.py 'domainlock.js'
+    if [ "$ENABLE_COPYRIGHT" = true ] ; 
+    then
+        # copyright info
+        echo ""
+        echo "Injecting Copyright info"
+        echo ""
+        python inject_copyright_info.py 'domainlock.js'
+    fi
 
     # domainlock breakout attempt info
     echo ""
