@@ -3,7 +3,11 @@
 	MyGame = ig.Game.extend({
         name: "MJS-Game",
         version: "1.0",
+<<<<<<< HEAD
         frameworkVersion: "1.0.1",
+=======
+        frameworkVersion: "1.0.0",
+>>>>>>> debe173... rebuild
         sessionData: {},
 		io: null,
 		paused: false,
