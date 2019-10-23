@@ -3,11 +3,7 @@
 	MyGame = ig.Game.extend({
         name: "MJS-Game",
         version: "1.0",
-<<<<<<< HEAD
-        frameworkVersion: "1.0.0",
-=======
         frameworkVersion: "1.0.1",
->>>>>>> f5f62ad... Merged in kaios-lockscreen-audio (pull request #32)
         sessionData: {},
 		io: null,
 		paused: false,
