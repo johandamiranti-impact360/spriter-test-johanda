@@ -3,7 +3,11 @@
 	MyGame = ig.Game.extend({
         name: "MJS-Game",
         version: "1.0",
+<<<<<<< HEAD
         frameworkVersion: "1.0.0",
+=======
+        frameworkVersion: "1.0.1",
+>>>>>>> f5f62ad... Merged in kaios-lockscreen-audio (pull request #32)
         sessionData: {},
 		io: null,
 		paused: false,
@@ -336,6 +340,9 @@
 	} else {
 		ig.main('#canvas', MyGame, fps, ig.sizeHandler.desktop.actualResolution.x, ig.sizeHandler.desktop.actualResolution.y, ig.sizeHandler.scale, ig.SplashLoader);
 	}
+    //VisibilityHandler
+    ig.visibilityHandler = new ig.VisibilityHandler()
+    
 	//Added sound handler with the tag ig.soundHandler
 	ig.soundHandler = null;
 	ig.soundHandler = new ig.SoundHandler();
