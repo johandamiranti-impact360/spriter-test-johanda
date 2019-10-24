@@ -123,7 +123,7 @@ compile_test_game (){
 
     echo "Compiling game.css for testing ..."
     bash css-append.sh
-    bash css-minify.sh temp.css > game.css
+    bash css-minify.sh temp.css game.css
     sed -i.bak 's/..\/..\/..\/..\/..\/..\///g' game.css
     rm temp.css
     rm *.bak
