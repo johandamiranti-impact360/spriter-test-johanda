@@ -15,6 +15,13 @@ Note that you only need to do this once.
 #### Notes: 
 
 ##### Security related
+As of January 16th 2020 AWS security updates, hardcoded S3 Access Keys will be removed from boto-s3-upload.py script. 
+
+You will have to setup AWS Environment Variables on your local machine to access S3 services. 
+
+To learn more, visit: https://bit.ly/mjs-aws-keystore
+
+----
 As of October 23rd 2017 anti-piracy security updates, jscrambler obfuscation is now part of the game compilation process ( '-b' task from push.sh). 
 
 In push.sh, added secure_strong and secure_regular: 
