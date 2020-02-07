@@ -8,6 +8,7 @@
 #! /bin/bash
 # Usage: bash push.sh [options]
 # Example: bash push.sh -b -d (bake, then deploy)
+VERSION="1.0.1"
 
 # Configurations
 BITBUCKET_BRANCH="master"
@@ -26,6 +27,7 @@ bake (){
     echo ""
 
     cd tools
+    chmod +x bake.sh
     bash bake.sh
     cd ..
 
