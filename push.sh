@@ -37,7 +37,7 @@ bake (){
 }
 
 secure_regular (){    
-    # 1st layer of main obfuscation
+    # main obfuscation
     echo ""
     echo "Preparing domainlock ..."
     echo ""
@@ -50,21 +50,10 @@ secure_regular (){
     echo ""
     python inject_domainlock_breakout_info.py 'domainlock.js'
     
-    # suppress console functions, freeze console and context2D
-    echo ""
-    echo "Injecting Anti-Tampering protection code"
-    echo ""
-    python inject_protection.py 'domainlock.js'
-    
     echo ""
     echo "Preparing factory domainlock ..."
     echo ""
     prep_factory_domainlock
-
-    echo ""
-    echo "Securing by obscuring ..."
-    echo ""
-    jscrambler -c tools/jscrambler-dev.json 'domainlock.js' -o 'domainlock.js'
 
     echo ""
     echo "Injecting domainlock ..."
@@ -76,7 +65,7 @@ secure_regular (){
     echo ""
     rm domainlock.js
 
-    # 2nd layer of global obfuscation
+    # global obfuscation
     echo ""
     echo "Securing by obscuring ..."
     echo ""
@@ -89,7 +78,7 @@ secure_regular (){
 }
 
 secure_strong (){    
-    # 1st layer of main obfuscation
+    # main obfuscation
     echo ""
     echo "Preparing domainlock ..."
     echo ""
@@ -121,21 +110,10 @@ secure_strong (){
     echo ""
     python inject_domainlock_breakout_info.py 'domainlock.js'
     
-    # suppress console functions, freeze console and context2D
-    echo ""
-    echo "Injecting Anti-Tampering protection code"
-    echo ""
-    python inject_protection.py 'domainlock.js'
-    
     echo ""
     echo "Preparing factory domainlock ..."
     echo ""
     prep_factory_domainlock
-
-    echo ""
-    echo "Securing by obscuring ..."
-    echo ""
-    jscrambler -c tools/jscrambler-dev.json 'domainlock.js' -o 'domainlock.js'
 
     echo ""
     echo "Injecting domainlock ..."
@@ -147,7 +125,7 @@ secure_strong (){
     echo ""
     rm domainlock.js
 
-    # 2nd layer of global obfuscation
+    # global obfuscation
     echo ""
     echo "Securing by obscuring ..."
     echo ""

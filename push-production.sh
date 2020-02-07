@@ -35,7 +35,7 @@ promo (){
 }
 
 secure_strong (){    
-    # 1st layer of main obfuscation
+    # main obfuscation
     echo ""
     echo "Preparing domainlock ..."
     echo ""
@@ -61,21 +61,10 @@ secure_strong (){
     echo ""
     python inject_domainlock_breakout_info.py 'domainlock.js'
     
-    # suppress console functions, freeze console and context2D
-    echo ""
-    echo "Injecting Anti-Tampering protection code"
-    echo ""
-    python inject_protection.py 'domainlock.js'
-    
     echo ""
     echo "Preparing factory domainlock ..."
     echo ""
     prep_factory_domainlock
-
-    echo ""
-    echo "Securing by obscuring ..."
-    echo ""
-    jscrambler -c tools/jscrambler-production.json 'domainlock.js' -o 'domainlock.js'
 
     echo ""
     echo "Injecting domainlock ..."
@@ -87,7 +76,7 @@ secure_strong (){
     echo ""
     rm domainlock.js
 
-    # 2nd layer of global obfuscation
+    # global obfuscation
     echo ""
     echo "Securing by obscuring ..."
     echo ""
@@ -199,7 +188,7 @@ deploy (){
     echo "Deploying ..."
     echo ""
 
-    python2.7 boto-s3-upload-production.py -l $2 $1
+    python boto-s3-upload-production.py -l $2 $1
 
     echo ""
     echo "Deploying Done!"
@@ -221,13 +210,13 @@ gitpush (){
 while getopts "l:bnahs:" opt; do
   case $opt in
     h)
-        echo "Usage: sh push.sh [option]"
+        echo "Usage: bash push.sh [option]"
         echo "Deploy Options"
         echo "\t -b \t Build all files"
         echo "\t -l \t Select language by code (en,jp,kr,zh,de,es, etc ...)"
         echo "\t -a \t Upload all files"
         echo "\t -n \t Upload new (recent) files up to 12 hrs"
-        echo "Working example (copy paste directly): sh push-production.sh -b -l en -a"
+        echo "Working example (copy paste directly): bash push-production.sh -b -l en -a"
       ;;
     l)
         echo "language to use:" $3
