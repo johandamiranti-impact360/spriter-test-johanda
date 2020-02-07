@@ -88,7 +88,7 @@ var _SETTINGS = {
 
     'DeveloperBranding':{ // MarketJS Branding
         'Splash':{
-            'Enabled':false,
+            'Enabled':true,
         },
         'Logo':{
             'Enabled':false,
@@ -119,4 +119,8 @@ var _SETTINGS = {
         'Link':'http://www.marketjs.com/game/links/mobile',
         'NewWindow': true,    // open link in new window, although this behavior can be override by browsers preference
     },
+    
+    'TapToStartAudioUnlock': {
+        'Enabled':false
+    }
 };
