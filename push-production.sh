@@ -8,7 +8,7 @@
 #! /bin/bash
 # Usage: bash push.sh [options]
 # Example: bash push.sh -b -d (bake, then deploy)
-VERSION="1.0.1"
+VERSION="1.1.0"
 
 CURRENT_DIRECTORY=${PWD}/
 
@@ -80,7 +80,9 @@ secure_strong (){
     echo ""
     echo "Securing by obscuring ..."
     echo ""
-    jscrambler -c tools/jscrambler-production.json 'game.js' -o 'game.js'
+    javascript-obfuscator 'game.js' -o 'game.js' --config 'tools/javascript-obfuscator-production.json'
+    sed -i.bak 's/{data;}else{return;}/{}else{return;}/g' game.js
+    rm *.bak
 
     echo ""
     echo "Securing Done!"
