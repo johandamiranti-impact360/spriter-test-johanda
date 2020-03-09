@@ -123,4 +123,8 @@ var _SETTINGS = {
 	'Gamecenter':{
 		'Enabled':true,
 	},
+	
+	'TapToStartAudioUnlock': {
+		'Enabled':false
+	}
 };
