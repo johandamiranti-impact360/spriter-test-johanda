@@ -13,7 +13,7 @@
    "log":false,
    "renameGlobals":false,
    "rotateStringArray":true,
-   "selfDefending":true,
+   "selfDefending":false,
    "shuffleStringArray":true,
    "splitStrings":false,
    "stringArray":false,
