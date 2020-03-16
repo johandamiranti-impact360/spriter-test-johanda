@@ -102,7 +102,7 @@ var _SETTINGS = {
 
     'Branding':{
         'Splash':{
-            'Enabled':true,
+            'Enabled':false,
         },
         'Logo':{
             'Enabled':true,
