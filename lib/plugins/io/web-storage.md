@@ -55,7 +55,7 @@ var myStorage = new WebStorage({
 //-------------
 //Inside module
 //-------------
-ig.module('my-storage').requires('plugins.web-storage').defines(function(){
+ig.module('my-storage').requires('plugins.io.web-storage').defines(function(){
     MyStorage = ws.extend({
         collection: 'score', //string. mandatory
         namespace:'myStorage', //string. optional
@@ -372,7 +372,7 @@ data = ws.rollback().get();
 ---
 ## Testing
 ```javascript
-//Include 'plugins.web-storage' in your main.js. Then run testing code via browser console
+//Include 'plugins.io.web-storage' in your main.js. Then run testing code via browser console
 
 console.log('-------Begin test 1------');
 //Clear previous collection
